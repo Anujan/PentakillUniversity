@@ -15,52 +15,39 @@
     <%= favicon_link_tag 'images/apple-touch-icon-72x72-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png', :sizes => '72x72' %>
     <%= favicon_link_tag 'images/apple-touch-icon-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png' %>
     <%= favicon_link_tag 'favicon.ico', :rel => 'shortcut icon' %>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
+    <%= javascript_include_tag "application" %>
   </head>
   <body>
 
-    <%= nav_bar :fixed => :top, :brand => "Pentakill University", :responsive => true do %>
-      <% menu_group do %>
-          <%= menu_item "Home", root_path %>
-      <% end %>
-      <% if user_signed_in? %>
-          <%= menu_item "Log Out", destroy_user_session_path %>
-      <% else %>
-          <% menu_group :pull => :right do %>
-              <%= menu_item "Sign In", new_user_session_path %>
-              <%= menu_item "Sign Up", new_user_registration_path %>
-          <% end %>
+    <%= nav_bar :fixed => :top, :inverse => true, :brand => "Pentakill University", :responsive => true do %>
+      <% menu_group :pull => :right do %>
+        <%= menu_item "Find Students", students_path %>
+        <%= menu_item "Find Mentors", mentors_path %>
+        <% if user_signed_in? %>
+          <%= menu_item "Log Out", destroy_user_session_path, :method => :delete %>
+        <% else %>
+          <%= menu_item "Sign In", new_user_session_path %>
+          <%= menu_item "Sign Up", new_user_registration_path %>
+        <% end %>
       <% end %>
     <% end %>
-
     <div class="container">
-        <div class="row">
-          <div class="span9">
-            <%= bootstrap_flash %>
-            <%= yield %>
-          </div>
-          <div class="span3">
-            <div class="well sidebar-nav">
-              <h3>Sidebar</h3>
-              <ul class="nav nav-list">
-                <li class="nav-header">Sidebar</li>
-                <li><%= link_to "Link1", "/path1"  %></li>
-                <li><%= link_to "Link2", "/path2"  %></li>
-                <li><%= link_to "Link3", "/path3"  %></li>
-              </ul>
-            </div><!--/.well -->
-          </div><!--/span-->
-        </div><!--/row-->
-
+      <div class="row">
+        <div class="span12">
+          <%= bootstrap_flash %>
+          <% if (user_signed_in? && !current_user.summoner_verified?) %>
+            <div class="alert alert-info">Your summoner isn't verified yet. Please change one of your rune page names to '<%= current_user.verify_code %>' and click the verify button.<br>
+              <%= link_to "Verify", user_verify_path, :class => 'btn btn-primary' %>
+            </div>
+          <% end %>
+          <%= yield %>
+        </div>
+      </div>
       <footer>
-        <p>&copy; Company 2013</p>
+        <p>&copy; Pentakill University 2013</p>
       </footer>
-
-    </div> <!-- /container -->
-
-    <!-- Javascripts
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <%= javascript_include_tag "application" %>
-
+    </div>
   </body>
 </html>

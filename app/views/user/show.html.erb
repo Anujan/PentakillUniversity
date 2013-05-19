@@ -1,0 +1,27 @@
+<%- model_class = User -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => @user.ign %></h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt><strong>IGN:</strong></dt>
+  <dd><%= @user.ign %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:server) %>:</strong></dt>
+  <dd><%= @user.server %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:roles) %>:</strong></dt>
+  <dd><%= @user.roles.join(", ") %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:tier) %>:</strong></dt>
+  <dd><%= @user.tier %></dd>
+  <% unless (@user.description.blank?) %>
+  <dt><strong><%= model_class.human_attribute_name(:description) %>:</strong></dt>
+  <dd><%= @user.description %></dd>
+  <% end %>
+</dl>
+
+<div class="form-actions">
+  <% if (@user.type == 'Student' && (!user_signed_in? || current_user.type == 'Mentor')) %>
+  	<%= link_to "Request", user_path, :class => 'btn'  %>
+  <% elsif (@user.type == 'Mentor' && (!user_signed_in? || current_user.type == 'Student')) %>
+  	<%= link_to "Apply", user_path, :class => 'btn' %>
+  <% end %>	
+</div>

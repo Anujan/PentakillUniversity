@@ -1,12 +1,22 @@
-PentakillUniversity::Application.routes.draw do
-  get "home/index"
+PentakillUniversity::Application.routes.draw do  
 
   devise_for :users
-
+  get "app/accept"
+  get "app/decline"
+  get "request/accept/:id" => "request#accept"
+  get "request/decline/:id" => 'request#decline'  
+  get "user/verify"
+  get "user" => 'user#profile'
+  get "user/requests"
+  get "home/index"  
+  get "students" => 'user#students'
+  get "mentors" => 'user#mentors'
+  get "user/:id/request" => 'user#request', :as => 'request'
+  get "user/:id" => 'user#show', :as => 'show'  
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
-  # Sample of regular route:
+  # Sample of regular route: 
   #   match 'products/:id' => 'catalog#view'
   # Keep in mind you can assign values other than :controller and :action
 

@@ -1,0 +1,24 @@
+<%- model_class = Mentor -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
+</div>
+<table class="table table-striped datatable">
+  <thead>
+    <tr>
+      <th>IGN</th>
+      <th><%= model_class.human_attribute_name(:server) %></th>
+      <th><%= model_class.human_attribute_name(:roles) %></th>
+      <th><%= model_class.human_attribute_name(:tier) %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @mentors.each do |user| %>
+      <tr>
+        <td><%= link_to user.ign, show_path(user) %></td>
+        <td><%= user.server %></td>
+        <td><%= user.roles.join(', ') %></td>
+        <td><%= user.tier %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

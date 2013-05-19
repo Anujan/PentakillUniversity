@@ -5,9 +5,10 @@ gem 'rails', '3.2.13'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'sqlite3'
-
+gem 'pg'
+gem 'thin'
 gem 'devise'
+gem 'turbolinks'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -17,12 +18,16 @@ group :assets do
 
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   # gem 'therubyracer', :platforms => :ruby
-
+  gem 'jquery-datatables-rails'#, git: "git://github.com/rweng/jquery-datatables-rails.git"
+  gem 'jquery-rails'
+  gem "twitter-bootstrap-rails", "~> 2.2.6"
+  gem "flat-ui-rails"
+  gem 'jquery-turbolinks'
   gem 'uglifier', '>= 1.0.3'
 end
 
-gem 'jquery-rails'
-gem "twitter-bootstrap-rails", "~> 2.2.6"
+gem 'simple_form'
+# gem 'kaminari'
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 

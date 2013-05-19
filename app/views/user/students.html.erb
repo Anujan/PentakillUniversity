@@ -1,0 +1,23 @@
+<div class="page-header">
+  <h1>Students</h1>
+</div>
+<table class="table table-striped datatable">
+  <thead>
+    <tr>
+      <th>IGN</th>
+      <th>Server</th>
+      <th>Role(s)</th>
+      <th>Tier</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @users.each do |u| %>
+      <tr>
+        <td><%= link_to u.ign, show_path(u) %></td>
+        <td><%= u.server %></td>
+        <td><%= u.roles.join(', ') %></td>
+        <td><%= u.tier %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

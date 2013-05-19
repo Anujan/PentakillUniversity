@@ -1,0 +1,17 @@
+---
+applications:
+  .:
+    name: PentakillUniversity
+    framework:
+      name: rails3
+      info:
+        mem: 256M
+        description: Rails Application
+        exec: 
+    infra: aws
+    url: ${name}.${target-base}
+    mem: 256M
+    instances: 2
+    services:
+      lolmentor-mysql-43077:
+        type: mysql
