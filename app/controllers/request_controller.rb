@@ -35,7 +35,7 @@ class RequestController < ApplicationController
         if (@request.blank?)
           return
   			if (@request.mc_gross == (@request.price * 1.05) || @request.mc_gross_1 == @request.price)
-  				rel = @request.student.relationships.create(:mentor => req.mentor, :price => @request.price, :payment_id => @request.txn_id)!
+  				rel = @request.student.relationships.create(:mentor => req.mentor, :price => @request.price, :payment_id => @request.txn_id)
           if (rel.save!)
             @request.destroy
           end
