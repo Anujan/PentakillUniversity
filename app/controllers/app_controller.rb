@@ -20,7 +20,7 @@ class AppController < ApplicationController
   		redirect_to root_path
   		return
   	end
-  	Application.create(:student_id => current_user.id, :mentor_id => mentor.id, :message => params[:message])!
+  	Application.create(:student_id => current_user.id, :mentor_id => mentor.id, :message => params[:message])
   	flash[:notice] = "Your application to #{mentor.ign} was submitted. Please wait for his reply."
   	redirect_to root_path
   end
