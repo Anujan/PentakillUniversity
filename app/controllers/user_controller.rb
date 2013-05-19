@@ -29,7 +29,7 @@ class UserController < ApplicationController
 
   def applications
     @user = current_user
-    @apps = @user.applications
+    @apps = @user.apps
   end
   
   def apply

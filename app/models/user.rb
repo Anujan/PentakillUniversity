@@ -10,7 +10,6 @@ class User < ActiveRecord::Base
   validate :valid_roles
   attr_accessible :email, :password, :password_confirmation, :remember_me, :ign, :server, :tier, :roles, :type
 
-  
   def valid_roles
     valid_role_array = ['Top', 'Mid', 'Jungle', 'AD Carry', 'Support']
     self.roles.each do |role| 

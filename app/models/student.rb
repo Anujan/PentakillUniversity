@@ -1,8 +1,8 @@
 class Student < User
-  has_many :applications, :foreign_key => 'student_id', :class_name => 'Application', :finder_sql => Proc.new {
+  has_many :apps, :foreign_key => 'student_id', :class_name => 'App', :finder_sql => Proc.new {
     %Q{
-      SELECT "applications".* FROM "applications" 
-      WHERE "applications"."student_id" = #{id}
+      SELECT "apps".* FROM "apps" 
+      WHERE "apps"."student_id" = #{id}
     }
   }
   has_many :requests, :foreign_key => 'student_id', :class_name => 'Request', :finder_sql => Proc.new {

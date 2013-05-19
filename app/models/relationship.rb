@@ -9,6 +9,7 @@ class Relationship < ActiveRecord::Base
     new_games = shurima_api(student.server, 'recent_games', student.acctid)
     if (new_games)
     	new_games[:array].each do |game_info|
+        
    			if (game_info[:ranked] && game_info[:gameMapId] == 1)
    				new_game = Games.new()
    				new_game.relationship_id = self.id

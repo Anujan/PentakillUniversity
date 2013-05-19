@@ -1,13 +1,13 @@
 class AppController < ApplicationController
   before_filter :authenticate_user!
   def accept
-  	app = Application.find(params[:id])
+  	app = App.find(params[:id])
   	flash[:app_id] = app.id
   	redirect_to :controller => 'user', :action => 'request', :id => app.student.id
   end
 
   def decline
-  	@app = Application.find(params[:id])
+  	@app = App.find(params[:id])
   	if (@app)
   		@app.destroy
   	end
@@ -20,7 +20,7 @@ class AppController < ApplicationController
   		redirect_to root_path
   		return
   	end
-  	Application.create(:student_id => current_user.id, :mentor_id => mentor.id, :message => params[:message])
+  	App.create(:student_id => current_user.id, :mentor_id => mentor.id, :message => params[:message])
   	flash[:notice] = "Your application to #{mentor.ign} was submitted. Please wait for his reply."
   	redirect_to root_path
   end
