@@ -20,12 +20,11 @@ group :assets do
   # gem 'therubyracer', :platforms => :ruby
   gem 'jquery-datatables-rails'#, git: "git://github.com/rweng/jquery-datatables-rails.git"
   gem 'jquery-rails'
-  gem "twitter-bootstrap-rails", "~> 2.2.6"
   gem "flat-ui-rails"
   gem 'jquery-turbolinks'
   gem 'uglifier', '>= 1.0.3'
 end
-
+gem "twitter-bootstrap-rails", "~> 2.2.6"
 gem 'simple_form'
 # gem 'kaminari'
 # To use ActiveModel has_secure_password
