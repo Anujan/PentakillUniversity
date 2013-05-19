@@ -12,7 +12,7 @@ class RequestController < ApplicationController
           redirect_to req.paypal_url(url_for(:controller => "user", :action => "requests", :only_path => false), url_for(:action => 'notify', :only_path => false))
     		  return
         else
-          req.student.relationships.create(:mentor => req.mentor, :price => req.price)!
+          req.student.relationships.create(:mentor => req.mentor, :price => req.price)
     			flash[:notice] = "You're now being mentored by #{req.mentor.ign}!"
     		end
     	end
