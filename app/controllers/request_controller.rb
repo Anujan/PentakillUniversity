@@ -32,8 +32,7 @@ class RequestController < ApplicationController
   	if params[:item_number1] && !params[:item_number1].empty?
   		if params[:payment_status] != 'Voided'
   			@request = Request.find(params[:item_number1].to_i)
-        if (@request.blank?)
-          return
+        return if request.blank?
   			if (@request.mc_gross == (@request.price * 1.05) || @request.mc_gross_1 == @request.price)
   				rel = @request.student.relationships.create(:mentor => req.mentor, :price => @request.price, :payment_id => @request.txn_id)
           if (rel.save!)
