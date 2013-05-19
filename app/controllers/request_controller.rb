@@ -4,7 +4,7 @@ class RequestController < ApplicationController
   	req = Request.find(params[:id])
     if (current_user.type == 'Student' && current_user.relationships.size > 0)
       flash[:error] = "You can only have 1 mentor at a time. Sorry."
-    elsif current_user.type == 'Mentor' && current_user.relationships.size > 2
+    elsif (current_user.type == 'Mentor' && current_user.relationships.size > 2)
       flash[:error] = "You can only have 3 students at a time, sorry!"
     else
     	if (req.student.id == current_user.id)
