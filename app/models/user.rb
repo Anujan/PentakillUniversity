@@ -72,7 +72,9 @@ class User < ActiveRecord::Base
     host, port = '78.129.218.131', 714
     TCPSocket.open(host, port) do |socket|
       ready = IO.select([socket], [socket], nil, 8)
-      return false unless ready
+      unless (ready) 
+        return falses
+      end
       socket.puts server + "&" + method + "&" + args.to_s
       message = socket.gets.chomp
       if message == '"Unknown error"'

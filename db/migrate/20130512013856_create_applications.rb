@@ -1,6 +1,6 @@
 class CreateApplications < ActiveRecord::Migration
   def change
-    create_table :applications do |t|
+    create_table :apps do |t|
       t.integer :student_id
       t.integer :mentor_id
       t.string :message

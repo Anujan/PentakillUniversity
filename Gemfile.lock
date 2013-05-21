@@ -38,7 +38,14 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.6.2)
+    columnize (0.3.6)
     daemons (1.1.9)
+    debugger (1.6.0)
+      columnize (>= 0.3.1)
+      debugger-linecache (~> 1.2.0)
+      debugger-ruby_core_source (~> 1.2.1)
+    debugger-linecache (1.2.0)
+    debugger-ruby_core_source (1.2.2)
     devise (2.2.4)
       bcrypt-ruby (~> 3.0)
       orm_adapter (~> 0.1)
@@ -67,7 +74,6 @@ GEM
     mime-types (1.23)
     multi_json (1.7.3)
     orm_adapter (0.4.0)
-    pg (0.15.1)
     polyglot (0.3.3)
     rack (1.4.5)
     rack-cache (1.2)
@@ -135,12 +141,12 @@ PLATFORMS
 
 DEPENDENCIES
   coffee-rails (~> 3.2.1)
+  debugger
   devise
   flat-ui-rails
   jquery-datatables-rails
   jquery-rails
   jquery-turbolinks
-  pg
   rails (= 3.2.13)
   sass-rails (~> 3.2.3)
   simple_form

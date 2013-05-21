@@ -13,7 +13,7 @@
 
 ActiveRecord::Schema.define(:version => 20130515214750) do
 
-  create_table "applications", :force => true do |t|
+  create_table "apps", :force => true do |t|
     t.integer  "student_id"
     t.integer  "mentor_id"
     t.string   "message"

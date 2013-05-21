@@ -1,5 +1,6 @@
 class UserController < ApplicationController
-  #before_filter :authenticate_user!, :except => [:show, :students, :mentors]
+  before_filter :authenticate_user!, :except => [:show, :students, :mentors]
+  
   def verify
     @user = current_user
     unless (@user.summoner_verified?)
@@ -22,14 +23,14 @@ class UserController < ApplicationController
     @requests = @user.requests
   end
 
-  def request
+  def request_mentorship
     @requester = current_user
     @requestee = Student.find(params[:id])
   end
 
   def applications
     @user = current_user
-    @apps = @user.apps
+    @app = @user.apps
   end
   
   def apply
@@ -42,7 +43,7 @@ class UserController < ApplicationController
   end
 
   def mentors
-    @mentors = Mentor.where(:verify_code => 'VERIFIED')
+    @user = Mentor.where(:verify_code => 'VERIFIED')
   end
 
   def profile

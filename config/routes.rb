@@ -11,7 +11,7 @@ PentakillUniversity::Application.routes.draw do
   get "home/index"  
   get "students" => 'user#students'
   get "mentors" => 'user#mentors'
-  get "user/:id/request" => 'user#request', :as => 'request'
+  get "user/:id/request" => 'user#request_mentorship', :as => 'request'
   get "user/:id" => 'user#show', :as => 'show'  
   # The priority is based upon order of creation:
   # first created -> highest priority.
