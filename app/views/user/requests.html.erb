@@ -1,2 +1,66 @@
-<h1>User#requests</h1>
-<p>Find me in app/views/user/requests.html.erb</p>
+<div class="page-header">
+  <h1>Requests</h1>
+</div>
+<% if (current_user.is_mentor?) %>
+	<% if (@requests.empty?) %>
+		You have no pending requests from Students.
+	<% else %>
+		<table class="table table-striped">
+		  <thead>
+		    <tr>
+		      <th>From</th>
+		      <th>Server</th>
+		      <th>Role(s)</th>
+		      <th>Current Tier</th>
+		      <th>Goal Tier</th>
+		      <th>Goal Division</th>
+		      <th>Price</th>
+		      <th>Accept</th>
+		      <th>Decline</th>
+		    </tr>
+		  </thead>
+		  <tbody>
+		    <% @requests.each do |req| %>
+		      <tr>
+		        <td><%= link_to req.student.ign, show_path(req.student) %></td>
+		        <td><%= req.student.server %></td>
+		        <td><%= req.student.roles.join(', ') %></td>
+		        <td><%= req.student.tier %></td>
+		        <td><%= req.goal_tier %></td>
+		        <td><%= req.goal_division %></td>
+		        <td><%= req.price %></td>
+		        <td><%= link_to "Accept", accept_request_path(req.id), :class => 'btn-primary' %></td>
+		        <td><%= link_to "Decline", decline_request_path(req.id), :class => 'btn-danger' %></td>
+		      </tr>
+		    <% end %>
+		  </tbody>
+		</table>
+	<% end %>
+<% else %>
+	<% if (@requests.empty?) %>
+		You have no pending requests to mentors.
+	<% else %>
+		<table class="table table-striped">
+		  <thead>
+		    <tr>
+		      <th>To</th>
+		      <th>Current Tier</th>
+		      <th>Goal Tier</th>
+		      <th>Goal Division</th>
+		      <th>Price</th>
+		    </tr>
+		  </thead>
+		  <tbody>
+		    <% @requests.each do |req| %>
+		      <tr>
+		        <td><%= link_to req.mentor.ign, show_path(req.mentor) %></td>]
+		        <td><%= req.student.tier %></td>
+		        <td><%= req.goal_tier %></td>
+		        <td><%= req.goal_division %></td>
+		        <td><%= req.price %></td>
+		      </tr>
+		    <% end %>
+		  </tbody>
+		</table>
+	<% end %>
+<% end %>

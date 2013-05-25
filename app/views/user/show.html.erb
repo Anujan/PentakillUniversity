@@ -20,8 +20,8 @@
 
 <div class="form-actions">
   <% if (@user.type == 'Student' && (!user_signed_in? || current_user.type == 'Mentor')) %>
-  	<%= link_to "Request", user_path, :class => 'btn'  %>
+  	<%= link_to "Request", request_path(@user), :class => 'btn'  %>
   <% elsif (@user.type == 'Mentor' && (!user_signed_in? || current_user.type == 'Student')) %>
-  	<%= link_to "Apply", user_path, :class => 'btn' %>
+  	<%= link_to "Apply", apply_path(@user), :class => 'btn' %>
   <% end %>	
 </div>

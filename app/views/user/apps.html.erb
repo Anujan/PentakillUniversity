@@ -1,0 +1,56 @@
+<div class="page-header">
+  <h1>Applications</h1>
+</div>
+<% if (current_user.is_mentor?) %>
+	<% if (@apps.empty?) %>
+		You have no pending apps from students.
+	<% else %>
+		<table class="table table-striped">
+		  <thead>
+		    <tr>
+		      <th>From</th>
+		      <th>Server</th>
+		      <th>Role(s)</th>
+		      <th>Current Tier</th>
+		      <th>Message</th>
+		      <th>Accept</th>
+		      <th>Decline</th>
+		    </tr>
+		  </thead>
+		  <tbody>
+		    <% @apps.each do |app| %>
+		      <tr>
+		        <td><%= link_to app.student.ign, show_path(app.student) %></td>
+		        <td><%= app.student.server %></td>
+		        <td><%= app.student.roles.join(', ') %></td>
+		        <td><%= app.student.tier %></td>
+		        <td><%= app.price %></td>
+		        <td><%= link_to "Accept", accept_app_path(app.id), :class => 'btn-primary' %></td>
+		        <td><%= link_to "Decline", decline_app_path(app.id), :class => 'btn-danger' %></td>
+		      </tr>
+		    <% end %>
+		  </tbody>
+		</table>
+	<% end %>
+<% else %>
+	<% if (@apps.empty?) %>
+		You have no pending applications to mentors.
+	<% else %>
+		<table class="table table-striped">
+		  <thead>
+		    <tr>
+		      <th>To</th>
+		      <th>Message</th>
+		    </tr>
+		  </thead>
+		  <tbody>
+		    <% @apps.each do |app| %>
+		      <tr>
+		        <td><%= link_to app.mentor.ign, show_path(app.mentor) %></td>]
+		        <td><%= app.message%></td>
+		      </tr>
+		    <% end %>
+		  </tbody>
+		</table>
+	<% end %>
+<% end %>

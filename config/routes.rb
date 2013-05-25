@@ -1,67 +1,20 @@
 PentakillUniversity::Application.routes.draw do  
 
   devise_for :users
-  get "app/accept"
-  get "app/decline"
-  get "request/accept/:id" => "request#accept"
-  get "request/decline/:id" => 'request#decline'  
+  get "app/accept/:id" => 'app#accept', :as => 'accept_app'
+  get "app/decline/:id" => 'app#decline', :as => 'decline_app'
+  get "request/accept/:id" => "request#accept:", :as => 'accept_request'
+  get "request/decline/:id" => 'request#decline', :as => 'decline_request'  
   get "user/verify"
   get "user" => 'user#profile'
   get "user/requests"
-  get "home/index"  
+  get "user/apps"
+  get "home/index"
   get "students" => 'user#students'
   get "mentors" => 'user#mentors'
   get "user/:id/request" => 'user#request_mentorship', :as => 'request'
-  get "user/:id" => 'user#show', :as => 'show'  
-  # The priority is based upon order of creation:
-  # first created -> highest priority.
-
-  # Sample of regular route: 
-  #   match 'products/:id' => 'catalog#view'
-  # Keep in mind you can assign values other than :controller and :action
-
-  # Sample of named route:
-  #   match 'products/:id/purchase' => 'catalog#purchase', :as => :purchase
-  # This route can be invoked with purchase_url(:id => product.id)
-
-  # Sample resource route (maps HTTP verbs to controller actions automatically):
-  #   resources :products
-
-  # Sample resource route with options:
-  #   resources :products do
-  #     member do
-  #       get 'short'
-  #       post 'toggle'
-  #     end
-  #
-  #     collection do
-  #       get 'sold'
-  #     end
-  #   end
-
-  # Sample resource route with sub-resources:
-  #   resources :products do
-  #     resources :comments, :sales
-  #     resource :seller
-  #   end
-
-  # Sample resource route with more complex sub-resources
-  #   resources :products do
-  #     resources :comments
-  #     resources :sales do
-  #       get 'recent', :on => :collection
-  #     end
-  #   end
-
-  # Sample resource route within a namespace:
-  #   namespace :admin do
-  #     # Directs /admin/products/* to Admin::ProductsController
-  #     # (app/controllers/admin/products_controller.rb)
-  #     resources :products
-  #   end
-
-  # You can have the root of your site routed with "root"
-  # just remember to delete public/index.html.
+  get "user/:id/apply" => 'user#apply', :as => 'apply'
+  get "user/:id" => 'user#show', :as => 'show'
   root :to => 'home#index'
 
   # See how all your routes lay out with "rake routes"

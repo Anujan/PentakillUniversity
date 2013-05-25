@@ -1,0 +1,9 @@
+<%= simple_form_for @request, :html => { :class => 'form-horizontal' } do |f| %>
+  <%= f.input :goal_tier %>
+  <%= f.hidden_field :student, value: @student.id %>
+  <%= f.input :goal_division %>
+  <%= f.input :price %>
+  <div class="form-actions">
+    <%= f.button :submit, :class => 'btn-primary' %>
+  </div>
+<% end %>

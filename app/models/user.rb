@@ -18,6 +18,10 @@ class User < ActiveRecord::Base
       end
     end
   end
+
+  def is_mentor?
+    return type == 'Mentor'
+  end
   
   def summoner_verified?
     return self.verify_code == 'VERIFIED'

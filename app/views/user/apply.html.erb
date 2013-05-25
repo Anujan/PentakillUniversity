@@ -1,0 +1,7 @@
+<%= simple_form_for @app, :html => { :class => 'form-horizontal' } do |f| %>
+  <%= f.input :message, placeholder: 'Type a short application on who you are and why the mentor should choose you as a student...' %>
+  <%= f.hidden_field :mentor, value: @mentor.id %>
+  <div class="form-actions">
+    <%= f.button :submit, :class => 'btn-primary' %>
+  </div>
+<% end %>

@@ -5,6 +5,7 @@ class CreateRelationships < ActiveRecord::Migration
       t.integer :mentor_id
       t.string :payment_id
       t.decimal :price, :precision => 8, :scale => 2
+      t.integer :last_game
 
       t.timestamps
     end

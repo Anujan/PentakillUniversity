@@ -1,22 +1,25 @@
 /*
   =require twitter-bootstrap-static/bootstrap
   =require twitter-bootstrap-static/fontawesome
-  = require flat-ui
-  */
+  =require flat-ui
+   */
   body {
       padding-top: 60px;
       background-color: #eceff1;
   }
-  
   .brand {
       text-decoration: none;
   }
-  
   label {
       margin-right: 20px;
   }
-  
   .checkbox input {
       opacity: 1;
       margin-bottom: 20px !important;
+  }
+  ul .dropdown-menu {
+    padding: 0px !important;
+  }
+  .navbar-inverse .nav li.dropdown.open>.dropdown-toggle, .navbar-inverse .nav li.dropdown.active>.dropdown-toggle, .navbar-inverse .nav li.dropdown.open.active>.dropdown-toggle {
+    background-color: inherit !important;
   }

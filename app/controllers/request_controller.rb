@@ -2,9 +2,9 @@ class RequestController < ApplicationController
   before_filter :authenticate_user!
   def accept
   	req = Request.find(params[:id])
-    if (current_user.type == 'Student' && current_user.relationships.size > 0)
+    if (!current_user.is_mentor? && current_user.relationships.size > 0)
       flash[:error] = "You can only have 1 mentor at a time. Sorry."
-    elsif (current_user.type == 'Mentor' && current_user.relationships.size > 2)
+    elsif (current_user.is_mentor? && current_user.relationships.size > 2)
       flash[:error] = "You can only have 3 students at a time, sorry!"
     else
     	if (req.student.id == current_user.id)
@@ -29,6 +29,7 @@ class RequestController < ApplicationController
   end
 
   def notify
+    Rails.logger.info(params.inspect)
   	if params[:item_number1] && !params[:item_number1].empty?
   		if params[:payment_status] != 'Voided'
   			@request = Request.find(params[:item_number1].to_i)

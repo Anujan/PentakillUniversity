@@ -3,18 +3,20 @@ class Relationship < ActiveRecord::Base
   belongs_to :mentor, :class_name => 'Mentor', :foreign_key => 'mentor_id', polymorphic: true
   has_many :games
   validates :mentor_id, :uniqueness => { :scope => :student_id }
-  attr_accessible :id, :mentor_id, :payment_id, :student_id, :price, :mentor
+  attr_accessible :id, :mentor_id, :payment_id, :student_id, :price, :mentor, :last_game
   
   def update_games
     new_games = shurima_api(student.server, 'recent_games', student.acctid)
     if (new_games)
+      new_last_game_id = self.last_game
     	new_games[:array].each do |game_info|
-        
-   			if (game_info[:ranked] && game_info[:gameMapId] == 1)
+        game_id = game_info[:gameId]
+   			if (game_id > self.last_game && game_info[:ranked] && game_info[:gameMapId] == 1)
    				new_game = Games.new()
    				new_game.relationship_id = self.id
    				new_game.update_stats(game_info)
    				new_game.save!
+          new_last_game_id = game_id if game_id > new_last_game_id
    			end
     	end
     end

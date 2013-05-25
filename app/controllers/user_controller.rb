@@ -28,7 +28,7 @@ class UserController < ApplicationController
     @requestee = Student.find(params[:id])
   end
 
-  def applications
+  def apps
     @user = current_user
     @app = @user.apps
   end
@@ -43,7 +43,7 @@ class UserController < ApplicationController
   end
 
   def mentors
-    @user = Mentor.where(:verify_code => 'VERIFIED')
+    @users = Mentor.where(:verify_code => 'VERIFIED')
   end
 
   def profile

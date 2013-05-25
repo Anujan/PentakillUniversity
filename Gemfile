@@ -5,7 +5,8 @@ gem 'rails', '3.2.13'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'sqlite3'
+gem 'sqlite3', group: [:development, :test]
+gem 'mysql2', group: [:production]
 gem 'thin'
 gem 'devise'
 gem 'turbolinks'
@@ -25,7 +26,7 @@ group :assets do
 end
 gem 'debugger', group: [:development, :test]
 
-gem "twitter-bootstrap-rails", "~> 2.2.6"
+#gem "twitter-bootstrap-rails", "~> 2.2.6"
 gem 'simple_form'
 # gem 'kaminari'
 # To use ActiveModel has_secure_password
