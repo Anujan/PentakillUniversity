@@ -3,8 +3,8 @@ class UserController < ApplicationController
   
   def verify
     @user = current_user
-    unless (@user.summoner_verified?)
-     result = @user.summoner_verify
+    unless (current_user.summoner_verified?)
+     result = current_user.summoner_verify
      if (result)
        flash[:notice] = 'Your summoner has now been verified!'
      else

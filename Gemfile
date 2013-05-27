@@ -6,7 +6,7 @@ gem 'rails', '3.2.13'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'sqlite3', group: [:development, :test]
-gem 'mysql2', group: [:production]
+gem 'pg'
 gem 'thin'
 gem 'devise'
 gem 'turbolinks'
@@ -26,7 +26,7 @@ group :assets do
 end
 gem 'debugger', group: [:development, :test]
 
-#gem "twitter-bootstrap-rails", "~> 2.2.6"
+gem "twitter-bootstrap-rails", "~> 2.2.6"
 gem 'simple_form'
 # gem 'kaminari'
 # To use ActiveModel has_secure_password

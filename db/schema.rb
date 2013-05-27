@@ -91,6 +91,7 @@ ActiveRecord::Schema.define(:version => 20130515214750) do
     t.integer  "mentor_id"
     t.string   "payment_id"
     t.decimal  "price",      :precision => 8, :scale => 2
+    t.integer  "last_game"
     t.datetime "created_at",                               :null => false
     t.datetime "updated_at",                               :null => false
   end

@@ -43,7 +43,7 @@
           <%= bootstrap_flash %>
           <% if (user_signed_in? && !current_user.summoner_verified?) %>
             <div class="alert alert-info">Your summoner isn't verified yet. Please change one of your rune page names to '<%= current_user.verify_code %>' and click the verify button.<br>
-              <%= link_to "Verify", user_verify_path, :class => 'btn btn-primary' %>
+              <%= link_to "Verify", user_verify_path, :class => 'btn btn-primary', 'data-no-turbolink' => true %>
             </div>
           <% end %>
           <%= yield %>

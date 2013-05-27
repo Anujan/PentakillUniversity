@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
   validates :ign, :server, :roles, :presence => true
   validate :summoner_exists
   validate :valid_roles
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :ign, :server, :tier, :roles, :type
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :ign, :server, :tier, :roles, :type, :verify_code
 
   def valid_roles
     valid_role_array = ['Top', 'Mid', 'Jungle', 'AD Carry', 'Support']
@@ -35,8 +35,7 @@ class User < ActiveRecord::Base
       rune_pages.each do |page|
         if (page['name'] == self.verify_code)
           self.verify_code = 'VERIFIED'
-          self.save
-          return true
+          return self.save
         end
       end
     end
