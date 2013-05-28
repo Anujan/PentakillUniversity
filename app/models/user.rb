@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
     valid_role_array = ['Top', 'Mid', 'Jungle', 'AD Carry', 'Support']
     roles.each do |role| 
       unless valid_role_array.include?(role)
-        roles.delete(role)
+        self.roles.delete(role)
       end
     end
   end
@@ -34,7 +34,7 @@ class User < ActiveRecord::Base
     else
       rune_pages.each do |page|
         if (page['name'] == verify_code)
-          verify_code = 'VERIFIED'
+          self.verify_code = 'VERIFIED'
           return save
         end
       end
@@ -43,7 +43,7 @@ class User < ActiveRecord::Base
   end
   
   def summoner_exists
-    unless (server_changed? || ign_changed? || new_record?)
+    unless (new_record? || server_changed? || ign_changed?)
       return
     end
     json = shurima_api(server, 'summoner', ign)
@@ -52,9 +52,7 @@ class User < ActiveRecord::Base
     else
       summonerid = json['summonerId']
       acctid = json['acctId']
-      if (verify_code.empty?) 
-        verify_code = Array.new(10){rand(36).to_s(36)}.join
-      end
+      verify_code = Array.new(10){rand(36).to_s(36)}.join
       eligible_to_mentor
     end
   end
@@ -67,7 +65,7 @@ class User < ActiveRecord::Base
     end
     leagues.each do |league| 
       if (league['queue'] == 'RANKED_SOLO_5x5')
-        tier = league['tier']
+        self.tier = league['tier']
       end
     end
     eligible_tiers = ['PLATINUM', 'DIAMOND', 'CHALLENGER']
@@ -76,14 +74,14 @@ class User < ActiveRecord::Base
     end
   end
   
-  def shurima_api(server, method, args)
+  def shurima_api(serv, method, args)
     host, port = '78.129.218.131', 714
     TCPSocket.open(host, port) do |socket|
       ready = IO.select([socket], [socket], nil, 8)
       unless (ready) 
-        return falses
+        return false
       end
-      socket.puts server + "&" + method + "&" + args.to_s
+      socket.puts serv + "&" + method + "&" + args.to_s
       message = socket.gets.chomp
       if message == '"Unknown error"'
         return false

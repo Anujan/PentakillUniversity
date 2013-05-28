@@ -7,7 +7,7 @@ class Request < ActiveRecord::Base
 
   def paypal_url(return_url, notify_url) 
 	values = { 
-		:business => "Anujan714@gmail.com",
+		:business => "Anujan714-facilitator@gmail.com",
 		:cmd => '_cart',
 		:upload => 1,
 		:return => return_url,
@@ -26,6 +26,6 @@ class Request < ActiveRecord::Base
 		"item_number_2" => 5000 + id,
 		"quantity_2" => '1'
 	})
-	return "https://www.paypal.com/cgi-bin/webscr?" + values.to_query
+	return "https://www.sandbox.paypal.com/cgi-bin/webscr?" + values.to_query
   end
 end

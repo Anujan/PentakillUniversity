@@ -2,7 +2,7 @@
   <h1>Applications</h1>
 </div>
 <% if (current_user.is_mentor?) %>
-	<% if (@apps.empty?) %>
+	<% if (current_user.apps.blank?) %>
 		You have no pending apps from students.
 	<% else %>
 		<table class="table table-striped">
@@ -18,22 +18,22 @@
 		    </tr>
 		  </thead>
 		  <tbody>
-		    <% @apps.each do |app| %>
+		    <% current_user.apps.each do |app| %>
 		      <tr>
 		        <td><%= link_to app.student.ign, show_path(app.student) %></td>
 		        <td><%= app.student.server %></td>
 		        <td><%= app.student.roles.join(', ') %></td>
 		        <td><%= app.student.tier %></td>
-		        <td><%= app.price %></td>
-		        <td><%= link_to "Accept", accept_app_path(app.id), :class => 'btn-primary' %></td>
-		        <td><%= link_to "Decline", decline_app_path(app.id), :class => 'btn-danger' %></td>
+		        <td><%= app.message %></td>
+		        <td><%= link_to "Accept", accept_app_path(app.id), :class => 'btn btn-primary' %></td>
+		        <td><%= link_to "Decline", decline_app_path(app.id), :class => 'btn btn-danger' %></td>
 		      </tr>
 		    <% end %>
 		  </tbody>
 		</table>
 	<% end %>
 <% else %>
-	<% if (@apps.empty?) %>
+	<% if (current_user.apps.empty?) %>
 		You have no pending applications to mentors.
 	<% else %>
 		<table class="table table-striped">
@@ -44,7 +44,7 @@
 		    </tr>
 		  </thead>
 		  <tbody>
-		    <% @apps.each do |app| %>
+		    <% current_user.apps.each do |app| %>
 		      <tr>
 		        <td><%= link_to app.mentor.ign, show_path(app.mentor) %></td>]
 		        <td><%= app.message%></td>

@@ -15,12 +15,12 @@ class AppController < ApplicationController
   end
 
   def create
-  	mentor = Mentor.find(params[:mentor])
+  	mentor = Mentor.find(params[:app][:mentor])
   	if (mentor.nil?)
   		redirect_to root_path
   		return
   	end
-  	App.create(:student_id => current_user.id, :mentor_id => mentor.id, :message => params[:message])
+  	App.create(:student_id => current_user.id, :mentor_id => mentor.id, :message => params[:app][:message])
   	flash[:notice] = "Your application to #{mentor.ign} was submitted. Please wait for his reply."
   	redirect_to root_path
   end

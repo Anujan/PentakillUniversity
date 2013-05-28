@@ -3,6 +3,7 @@ PentakillUniversity::Application.routes.draw do
   devise_for :users
   get "app/accept/:id" => 'app#accept', :as => 'accept_app'
   get "app/decline/:id" => 'app#decline', :as => 'decline_app'
+  post "app/new" => 'app#create', :as => 'create_app'
   get "request/accept/:id" => "request#accept:", :as => 'accept_request'
   get "request/decline/:id" => 'request#decline', :as => 'decline_request'  
   get "user/verify"

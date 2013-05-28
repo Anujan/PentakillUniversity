@@ -36,6 +36,7 @@ class UserController < ApplicationController
   def apply
     @student = current_user
     @mentor = Mentor.find(params[:id])
+    @app = App.new
   end
   
   def students
