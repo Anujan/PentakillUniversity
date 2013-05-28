@@ -3,7 +3,7 @@ class AppController < ApplicationController
   def accept
   	app = App.find(params[:id])
   	flash[:app_id] = app.id
-  	redirect_to :controller => 'user', :action => 'request', :id => app.student.id
+  	redirect_to :controller => 'user', :action => 'request_mentorship', :id => app.student.id
   end
 
   def decline

@@ -20,7 +20,7 @@ class Request < ActiveRecord::Base
 		"item_number_1" => id,
 		"quantity_1" => '1'
 	})
-	values.merge!({ 
+	values.merge!({
 		"amount_2" => price * 0.05,
 		"item_name_2" => "5% Escrow Fee",
 		"item_number_2" => 5000 + id,
