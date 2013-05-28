@@ -25,7 +25,8 @@ class UserController < ApplicationController
 
   def request_mentorship
     @requester = current_user
-    @requestee = Student.find(params[:id])
+    @student = Student.find(params[:id])
+    @request = Request.new
   end
 
   def apps

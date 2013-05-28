@@ -45,12 +45,17 @@ class RequestController < ApplicationController
   	render :nothing => true
   end
 
-  def create 
-    student = Student.find(params[:student])
+  def create
+    student = Student.find(params[:request][:student])
     if (student.nil?)
       return redirect_to root_path
     end
-    req = student.requests.create(:price => params[:price], :mentor_id => current_user.id, :goal_tier => params[:goal_tier], :goal_division => params[:goal_division])
+    req = student.requests.create(:price => params[:request][:price], :mentor_id => current_user.id, :goal_tier => params[:request][:goal_tier], :goal_division => params[:request][:goal_division])
+    current_user.apps.each do |app| 
+      if (app.student.id == student.id)
+        app.destroy
+      end
+    end
     flash[:notice] = "Your request has been sent to #{student.ign}. Please wait for a response."
     redirect_to root_path
   end

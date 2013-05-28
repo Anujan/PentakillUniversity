@@ -8,7 +8,7 @@ class AppController < ApplicationController
 
   def decline
   	@app = App.find(params[:id])
-  	if (@app)
+  	unless (@app.nil? || @app.mentor_id != current_user.id)
   		@app.destroy
   	end
   	redirect_to :back
