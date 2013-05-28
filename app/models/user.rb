@@ -43,16 +43,17 @@ class User < ActiveRecord::Base
   end
   
   def summoner_exists
+    debugger
     unless (new_record? || server_changed? || ign_changed?)
       return
     end
-    json = shurima_api(server, 'summoner', ign)
-    unless json
+    json = self.shurima_api(self.server, 'summoner', self.ign)
+    unless !json.nil? || json
       errors.add(:ign, "The summoner name \"#{ign}\" doesn't exist on #{server}")
     else
-      summonerid = json['summonerId']
-      acctid = json['acctId']
-      verify_code = Array.new(10){rand(36).to_s(36)}.join
+      self.summonerid = json['summonerId']
+      self.acctid = json['acctId']
+      self.verify_code = Array.new(10){rand(36).to_s(36)}.join
       eligible_to_mentor
     end
   end

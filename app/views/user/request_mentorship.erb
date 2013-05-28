@@ -2,9 +2,8 @@
   <%= f.input :goal_tier, required: true, priority: ['GOLD'], collection: ['CHALLENGER', 'DIAMOND', 'PLATINUM', 'GOLD', 'SILVER', 'BRONZE'] %>
   <%= f.hidden_field :student, value: @student.id %>
   <%= f.input :goal_division, required: true, priority: ['GOLD'], collection: ['I', 'II', 'III', 'IV', 'V'] %>
-  <%= f.input :price, :placeholder => '0.00', value: '0.00' %>
+  <%= f.input :price, :placeholder => '0.00' %>
   <div class="form-actions">
     <%= f.button :submit, :class => 'btn btn-primary' %>
   </div>
 <% end %>
-a

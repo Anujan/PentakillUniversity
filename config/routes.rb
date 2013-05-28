@@ -4,9 +4,10 @@ PentakillUniversity::Application.routes.draw do
   get "app/accept/:id" => 'app#accept', :as => 'accept_app'
   get "app/decline/:id" => 'app#decline', :as => 'decline_app'
   post "app/new" => 'app#create', :as => 'create_app'
-  get "request/accept/:id" => "request#accept:", :as => 'accept_request'
+  get "request/accept/:id" => "request#accept", :as => 'accept_request'
   get "request/decline/:id" => 'request#decline', :as => 'decline_request'
   post "request/new" => "request#create", :as => 'create_request'  
+  post "request/notify" => "request#notify", :as => 'paypal_ipn'
   get "user/verify"
   get "user" => 'user#profile'
   get "user/requests"
