@@ -27,7 +27,8 @@
 		        <td><%= req.goal_tier %></td>
 		        <td><%= req.goal_division %></td>
 		        <td><%= req.price.to_s %></td>
-		        <td><%= link_to "Accept", accept_request_path(req.id), :class => 'btn btn-primary' %></td>
+		        <% accept_url = (req.price == 0) ? accept_request_path(req.id) : req.paypal_url(url_for(:controller => "user", :action => "requests", :only_path => false), payment_notifications_url) %>
+		        <td><%= link_to "Accept", accept_url, :class => 'btn btn-primary', 'data-no-turbolink' => true  %></td>
 		        <td><%= link_to "Decline", decline_request_path(req.id), :class => 'btn btn-danger' %></td>
 		      </tr>
 		    <% end %>

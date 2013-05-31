@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130515214750) do
+ActiveRecord::Schema.define(:version => 20130531031828) do
 
   create_table "apps", :force => true do |t|
     t.integer  "student_id"
@@ -86,14 +86,24 @@ ActiveRecord::Schema.define(:version => 20130515214750) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "payment_notifications", :force => true do |t|
+    t.text     "params"
+    t.integer  "request_id"
+    t.string   "status"
+    t.string   "transaction_id"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
+
   create_table "relationships", :force => true do |t|
     t.integer  "student_id"
     t.integer  "mentor_id"
     t.string   "payment_id"
-    t.decimal  "price",      :precision => 8, :scale => 2
-    t.integer  "last_game"
-    t.datetime "created_at",                               :null => false
-    t.datetime "updated_at",                               :null => false
+    t.decimal  "price",         :precision => 8, :scale => 2
+    t.datetime "created_at",                                  :null => false
+    t.datetime "updated_at",                                  :null => false
+    t.string   "goal_tier"
+    t.string   "goal_division"
   end
 
   create_table "requests", :force => true do |t|

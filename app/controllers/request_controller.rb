@@ -1,5 +1,6 @@
 class RequestController < ApplicationController
   before_filter :authenticate_user!
+  skip_before_filter :verify_authenticity_token, :only => [:notify]
   def accept
   	req = Request.find(params[:id])
     if (!current_user.is_mentor? && !current_user.relationship.nil?)
@@ -9,13 +10,12 @@ class RequestController < ApplicationController
     else
     	if (req.student.id == current_user.id)
     		if (req.price > 0)
-          redirect_to req.paypal_url(url_for(:controller => "user", :action => "requests", :only_path => false), url_for(paypal_ipn_path, :only_path => false))
     		  return
         else
           req.student.relationship = Relationship.create(:mentor => req.mentor, :price => req.price)
     			flash[:notice] = "You're now being mentored by #{req.mentor.ign}!"
           current_user.requests.each do |request| 
-            if (request.student.id == current_user.id)
+            if (request.student.id == current_.id)
               request.destroy
             end
           end
@@ -35,19 +35,8 @@ class RequestController < ApplicationController
 
   def notify
     Rails.logger.info(params.inspect)
-  	if params[:item_number1] && !params[:item_number1].empty?
-  		if params[:payment_status] != 'Voided'
-  			@request = Request.find(params[:item_number1].to_i)
-        return if request.blank?
-  			if (@request.mc_gross == (@request.price * 1.05) || @request.mc_gross_1 == @request.price)
-  				rel = @request.student.relationships.create(:mentor => req.mentor, :price => @request.price, :payment_id => @request.txn_id)
-          if (rel.save)
-            @request.destroy
-          end
-  			end
-  		end
-  	end
-  	render :nothing => true
+    PaymentNotification.create!(:params => params, :request_id => params[:invoice], :status => params[:payment_status], :transaction_id => params[:txn_id] )
+    render :nothing => true
   end
 
   def create

@@ -1,5 +1,7 @@
 PentakillUniversity::Application.routes.draw do  
 
+
+  post "payment_notifications" => "payment_notifications#create", :as => 'payment_notifications'
   devise_for :users
   get "app/accept/:id" => 'app#accept', :as => 'accept_app'
   get "app/decline/:id" => 'app#decline', :as => 'decline_app'
