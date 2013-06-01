@@ -26,7 +26,6 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 gem 'debugger', group: [:development, :test]
-
 gem "twitter-bootstrap-rails", "~> 2.2.6"
 gem 'simple_form'
 # gem 'kaminari'

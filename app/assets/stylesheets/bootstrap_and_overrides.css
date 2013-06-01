@@ -1,25 +1,43 @@
 /*
-  =require twitter-bootstrap-static/bootstrap
-  =require twitter-bootstrap-static/fontawesome
-  =require flat-ui
-   */
+ =require twitter-bootstrap-static/bootstrap
+ =require twitter-bootstrap-static/fontawesome
+ =require flat-ui
+ */
   body {
-      padding-top: 60px;
-      background-color: #eceff1;
+  	padding-top: 60px;
+  	background-color: #eceff1;
   }
   .brand {
-      text-decoration: none;
+  	text-decoration: none;
   }
   label {
-      margin-right: 20px;
+  	margin-right: 20px;
   }
   .checkbox input {
-      opacity: 1;
-      margin-bottom: 20px !important;
+  	opacity: 1;
+  	margin-bottom: 20px !important;
   }
   ul .dropdown-menu {
-    padding: 0px !important;
+  	padding: 0px !important;
   }
   .navbar-inverse .nav li.dropdown.open>.dropdown-toggle, .navbar-inverse .nav li.dropdown.active>.dropdown-toggle, .navbar-inverse .nav li.dropdown.open.active>.dropdown-toggle {
-    background-color: inherit !important;
+  	background-color: inherit !important;
+  }
+  #footer-wrapper {
+  	text-align: center;
+  	padding: 30px 0;
+  	max-width:1108px;
+  	margin:0 auto;
+  }
+  ul#footer-container-right a {
+  	text-decoration:none;
+  	color:#656565;
+  }
+
+  ul#footer-container-right a:hover {
+  	color:#446DB2;
+  }
+
+  li.copyright {
+  	list-style: none;
   }

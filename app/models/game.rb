@@ -21,9 +21,37 @@ class Game < ActiveRecord::Base
   	self.champion_id = stats[:championId]
   	self.ping = stats[:userServerPing]
   	self.premadesize = stats[:premadeTeam] ? 1 : 0
-  	stats[:statistics][:array].each do |key, val| 
+  	stats[:statistics][:array].each do |key, val|
+      key.downcase!
   		self.send("#{key}=", val)
   	end
   	self.save
+    unless ($redis.get(1) == "Annie")
+      url = "http://shurima.net/api/champions/items"
+      json = JSON.parse(Net::HTTP.get_response(URI.parse(url)).body)
+      json.each do |entry|
+        $redis.set(entry[['id'], entry['displayName']])
+      end
+    end
+  end
+
+  def item_string
+    items = [item0, item1, item2, item3, item4, item5]
+    itemNames = []
+    items.each do |item|
+      itemNames << $redis.get(item) if item > 0
+    end
+    return itemNames.join(", ")
+  end
+
+  def get_estimated_time_string
+    ip = ipearned - boostipearned
+    if (win > 0 && firstwin > 0)
+      ip -= 150;
+    end
+    base = win > 0 ? 18 : 16
+    perMin = win > 0 ? 2.312 : 1.405
+    time = (ip - base) / perMin
+    return time.to_i.to_s
   end
 end

@@ -13,12 +13,12 @@
   </thead>
   <tbody>
     <% @users.each do |user| %>
-      <tr>
-        <td><%= link_to user.ign, show_path(user) %></td>
-        <td><%= user.server %></td>
-        <td><%= user.roles.join(', ') %></td>
-        <td><%= user.tier %></td>
-      </tr>
+    <tr>
+      <td><%= link_to user.ign, show_path(user) %></td>
+      <td><%= user.server %></td>
+      <td><%= user.roles.join(', ') %></td>
+      <td><%= user.tier %></td>
+    </tr>
     <% end %>
   </tbody>
 </table>

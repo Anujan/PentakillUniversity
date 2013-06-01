@@ -1,3 +1,36 @@
 <%  title "Home" %>
 <h1><%=  yield(:title) %></h1>
-<p>Hi I'm Eva Cheung, and I smell like PEE</p>
+<% if (user_signed_in?) %>
+	<% if (current_user.is_mentor? && current_user.relationships.empty?) %>
+		<div class="hero-unit">Welcome to Pentakill University!
+		<p>We see that you have no students at the moment! You can send requests to <%= link_to "students", students_path %> or view <%= link_to "applications", user_apps_path %> from students! </p><p>Once you've got a student or two, you'll be able to track their progress and games through our website. After you help them reach their goal, the student will then be released from you and you will be able to help another! You'll also get paid (If it's a paid relationship) once the student has reached the goal! </p>
+		<p>If you have any questions, or concerns! Let me know on <%= link_to "Twitter", "https://twitter.com/anujanpan" %>!</p></div>
+	<% elsif (current_user.is_mentor?) %>
+
+	<% elsif (current_user.relationship.blank?) %>
+		<div class="hero-unit">Welcome to Pentakill University!
+		<p>We see that you have no mentor at the moment! You can send applications to <%= link_to "mentors", mentors_path %> or view <%= link_to "requests", user_requests_path %> from mentors! </p><p>Once you've got a mentor, you'll be able to track your progress and games through our website, with the mentor providing feedback. After you help reach your goal, you will then be released from the mentor and will have to find another or apply again! The mentor will also get paid from us when you reach your goal (If it's a paid relationship).</p>
+		<p>If you have any questions, or concerns! Let me know on <%= link_to "Twitter", "https://twitter.com/anujanpan" %>!</p></div>
+	<% else %>
+		<table class="table table-hover">
+		  	<thead>
+				<tr>
+			  		<th>Champion</th>
+			  		<th>Level</th>
+			  		<th>Time</th>
+			  		<th>K/D/A</th>
+			  		<th>Items</th>
+			  		<th>Gold Earned</th>
+				</tr>
+		    </thead>
+			<tbody>
+				<%= render :partial => "game", :collection => current_user.relationship.games %>
+				<% if (current_user.relationship.games.empty?) %>
+					<h4>You don't have any games logged yet. Play some games so you and the mentor can discuss them!</h4>
+				<% end %>
+			</tbody>
+		</table>
+	<% end %>
+<% else %>
+
+<% end %>
