@@ -1,5 +1,3 @@
-<%  title "Home" %>
-<h1><%=  yield(:title) %></h1>
 <% if (user_signed_in?) %>
 	<% if (current_user.is_mentor? && current_user.relationships.empty?) %>
 		<div class="hero-unit">Welcome to the Proving Grounds!
@@ -57,7 +55,7 @@
 		<p>
 			Students and mentors are given a goal tier, which the student is aiming for. Once that tier has been reached, the mentor and student will part ways. 
 		</p>
-		<p>Although we encourage mentors to teach for free, you're also given the option to charge a fee. The student will pay us the fee immediately and we'll send it to the mentor once the goal tier has been reached. If the student doesn't reach his goal tier or doesn't  find the mentor helpful, they made request a refund! We only hold the money for you so both parties aren't scammed. If you wish to charge without having us hold the money, you'll have to make arrangements off our site. We will not be responsible for any fraud that occurs.</p>
+		<p>Although we encourage mentors to teach for free, you're also given the option to charge a fee. The student will pay us the fee immediately and we'll send it to the mentor once the goal tier has been reached. If the student doesn't reach his goal tier or doesn't  find the mentor helpful, they made request a refund. We only hold the money for you so both parties aren't scammed. If you wish to charge without having us hold the money, you'll have to make arrangements off our site. We will not be responsible for any fraud that occurs.</p>
 		<p>Please remember Proving Grounds is still in BETA and we have much more planned!</p>
 		<p>If you have any questions, or concerns! Let me know on <%= link_to "Twitter", "https://twitter.com/anujanpan" %>!</p></div>
 <% end %>
