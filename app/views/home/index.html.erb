@@ -6,12 +6,8 @@
 		<p>We see that you have no students at the moment! You can send requests to <%= link_to "students", students_path %> or view <%= link_to "applications", user_apps_path %> from students! </p><p>Once you've got a student or two, you'll be able to track their progress and games through our website. After you help them reach their goal, the student will then be released from you and you will be able to help another! You'll also get paid (If it's a paid relationship) once the student has reached the goal! </p>
 		<p>If you have any questions, or concerns! Let me know on <%= link_to "Twitter", "https://twitter.com/anujanpan" %>!</p></div>
 	<% elsif (current_user.is_mentor?) %>
-
-	<% elsif (current_user.relationship.blank?) %>
-		<div class="hero-unit">Welcome to the Proving Grounds!
-		<p>We see that you have no mentor at the moment! You can send applications to <%= link_to "mentors", mentors_path %> or view <%= link_to "requests", user_requests_path %> from mentors! </p><p>Once you've got a mentor, you'll be able to track your progress and games through our website, with the mentor providing feedback. After you help reach your goal, you will then be released from the mentor and will have to find another or apply again! The mentor will also get paid from us when you reach your goal (If it's a paid relationship).</p>
-		<p>If you have any questions, or concerns! Let me know on <%= link_to "Twitter", "https://twitter.com/anujanpan" %>!</p></div>
-	<% else %>
+		<% current_user.relationships.each do |rl| %>
+		<h4><%= rl.student.ign %> Games</h4>
 		<table class="table table-hover">
 		  	<thead>
 				<tr>
@@ -24,13 +20,44 @@
 				</tr>
 		    </thead>
 			<tbody>
-				<%= render :partial => "game", :collection => current_user.relationship.games %>
-				<% if (current_user.relationship.games.empty?) %>
-					<h4>You don't have any games logged yet. Play some games so you and the mentor can discuss them!</h4>
+				<%= render :partial => "game", :collection => rl.games %>
+			</tbody>
+		</table>
+		<% end %>
+	<% elsif (current_user.relationship.blank?) %>
+		<div class="hero-unit">Welcome to the Proving Grounds!
+		<p>We see that you have no mentor at the moment! You can send applications to <%= link_to "mentors", mentors_path %> or view <%= link_to "requests", user_requests_path %> from mentors! </p><p>Once you've got a mentor, you'll be able to track your progress and games through our website, with the mentor providing feedback. After you help reach your goal, you will then be released from the mentor and will have to find another or apply again! The mentor will also get paid from us when you reach your goal (If it's a paid relationship).</p>
+		<p>If you have any questions, or concerns! Let me know on <%= link_to "Twitter", "https://twitter.com/anujanpan" %>!</p></div>
+	<% else %>
+		<% rl = current_user.relationship %>
+		<table class="table table-hover">
+		  	<thead>
+				<tr>
+			  		<th>Champion</th>
+			  		<th>Level</th>
+			  		<th>Time</th>
+			  		<th>K/D/A</th>
+			  		<th>Items</th>
+			  		<th>Gold Earned</th>
+				</tr>
+		    </thead>
+			<tbody>
+				<%= render :partial => "game", :collection => rl.games %>
+				<% if (rl.games.empty?) %>
+					<h4>You don't have any games logged yet. Play some games so you and the mentor (<%= rl.mentor.name %>) can discuss them!</h4>
 				<% end %>
 			</tbody>
 		</table>
 	<% end %>
 <% else %>
-Not logged in ##TODO
+<div class="hero-unit">Welcome to the Proving Grounds BETA!
+		<p>The Proving Grounds was built to allows summoners to help each other improve through mentoring!</p>
+		<p>Students sign up and apply to mentors, and if the mentor chooses you, all your games will be logged on our site for both of you to review together!
+		</p>
+		<p>
+			Students and mentors are given a goal tier, which the student is aiming for. Once that tier has been reached, the mentor and student will part ways. 
+		</p>
+		<p>Although we encourage mentors to teach for free, you're also given the option to charge a fee. The student will pay us the fee immediately and we'll send it to the mentor once the goal tier has been reached. If the student doesn't reach his goal tier or doesn't  find the mentor helpful, they made request a refund! We only hold the money for you so both parties aren't scammed. If you wish to charge without having us hold the money, you'll have to make arrangements off our site. We will not be responsible for any fraud that occurs.</p>
+		<p>Please remember Proving Grounds is still in BETA and we have much more planned!</p>
+		<p>If you have any questions, or concerns! Let me know on <%= link_to "Twitter", "https://twitter.com/anujanpan" %>!</p></div>
 <% end %>
