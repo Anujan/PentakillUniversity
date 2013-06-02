@@ -1,6 +1,5 @@
 require 'rake'
 require 'json'
-require "redis"
 require 'net/http'
 
 namespace :games do
