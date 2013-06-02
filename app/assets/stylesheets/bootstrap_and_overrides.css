@@ -41,3 +41,15 @@
   li.copyright {
   	list-style: none;
   }
+
+  .roles {
+    height: 60px;
+  }
+
+  .user_roles input {
+    float: none !important;
+  }
+
+  .user_roles label {
+    width: auto !important;
+  }

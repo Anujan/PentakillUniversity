@@ -1,24 +1,13 @@
 <%= simple_form_for @user, :html => { :class => 'form-horizontal' } do |f| %>
-  <%= f.input :email %>
-  <%= f.input :encrypted_password %>
-  <%= f.input :reset_password_token %>
-  <%= f.input :reset_password_sent_at %>
-  <%= f.input :remember_created_at %>
-  <%= f.input :current_sign_in_at %>
-  <%= f.input :last_sign_in_at %>
-  <%= f.input :current_sign_in_ip %>
-  <%= f.input :last_sign_in_ip %>
-  <%= f.input :summonerid %>
-  <%= f.input :acctid %>
-  <%= f.input :ign %>
-  <%= f.input :server %>
-  <%= f.input :roles %>
-  <%= f.input :tier %>
-  <%= f.input :type %>
-  <%= f.input :verify_code %>
-  <div class="form-actions">
-    <%= f.button :submit, :class => 'btn-primary' %>
-    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-                users_path, :class => 'btn' %>
-  </div>
+    <%= f.input :email, :required => true, :autofocus => true %>
+    <%= f.input :password, :required => true %>
+    <%= f.input :password_confirmation, :required => true %>
+    <%= f.input :ign, placeholder: "MrQuackers", required: true, label: "Summoner Name" %>
+    <%= f.input :server, required: true, priority: ['NA'], collection: ['NA', 'EUW', 'EUNE', 'BR', 'TR', 'SEA', 'TW'] %>
+    <%= f.input :roles, required:true, priority: ['Top'], collection: ['Top', 'Mid', 'Jungle', 'AD Carry', 'Support'], boolean_style: :inline, :input_html => {:multiple => 'multiple'} %>
+    <%= f.input :type, required: true, priority: ['Student'], collection:['Student', 'Mentor'], boolean_style: :inline%>
+    </div>
+    <div class="form-actions">
+      <%= f.button :submit, "Sign up" %>
+    </div>
 <% end %>
