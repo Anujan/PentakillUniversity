@@ -26,22 +26,19 @@ class Game < ActiveRecord::Base
   		self.send("#{key}=", val)
   	end
   	self.save
-    unless ($redis.get(1) == "Annie")
-      url = "http://shurima.net/api/champions/items"
-      json = JSON.parse(Net::HTTP.get_response(URI.parse(url)).body)
-      json.each do |entry|
-        $redis.set(entry[['id'], entry['displayName']])
-      end
-    end
   end
 
   def item_string
     items = [item0, item1, item2, item3, item4, item5]
     itemNames = []
     items.each do |item|
-      itemNames << $redis.get(item) if item > 0
+      itemNames << Thing.find(item).name if item > 0
     end
     return itemNames.join(", ")
+  end
+
+  def champion_name
+    return Thing.find(champion_id).name
   end
 
   def estimated_time_string
