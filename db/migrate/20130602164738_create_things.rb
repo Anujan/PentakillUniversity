@@ -6,7 +6,7 @@ class CreateThings < ActiveRecord::Migration
 			t.integer :id
 			t.string :name
 		end
-		url = "http://shurima.net/api/champions/items"
+		url = "http://shurima.net/api/champions/items/all"
 		json = JSON.parse(Net::HTTP.get_response(URI.parse(url)).body)
 		json.each do |entry|
 			Thing.create(id: entry["id"], name: entry["displayName"])	
