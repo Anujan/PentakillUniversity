@@ -44,7 +44,7 @@ class Game < ActiveRecord::Base
     return itemNames.join(", ")
   end
 
-  def get_estimated_time_string
+  def estimated_time_string
     ip = ipearned - boostipearned
     if (win > 0 && firstwin > 0)
       ip -= 150;

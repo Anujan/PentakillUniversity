@@ -2,13 +2,13 @@
 <h1><%=  yield(:title) %></h1>
 <% if (user_signed_in?) %>
 	<% if (current_user.is_mentor? && current_user.relationships.empty?) %>
-		<div class="hero-unit">Welcome to Pentakill University!
+		<div class="hero-unit">Welcome to the Proving Grounds!
 		<p>We see that you have no students at the moment! You can send requests to <%= link_to "students", students_path %> or view <%= link_to "applications", user_apps_path %> from students! </p><p>Once you've got a student or two, you'll be able to track their progress and games through our website. After you help them reach their goal, the student will then be released from you and you will be able to help another! You'll also get paid (If it's a paid relationship) once the student has reached the goal! </p>
 		<p>If you have any questions, or concerns! Let me know on <%= link_to "Twitter", "https://twitter.com/anujanpan" %>!</p></div>
 	<% elsif (current_user.is_mentor?) %>
 
 	<% elsif (current_user.relationship.blank?) %>
-		<div class="hero-unit">Welcome to Pentakill University!
+		<div class="hero-unit">Welcome to the Proving Grounds!
 		<p>We see that you have no mentor at the moment! You can send applications to <%= link_to "mentors", mentors_path %> or view <%= link_to "requests", user_requests_path %> from mentors! </p><p>Once you've got a mentor, you'll be able to track your progress and games through our website, with the mentor providing feedback. After you help reach your goal, you will then be released from the mentor and will have to find another or apply again! The mentor will also get paid from us when you reach your goal (If it's a paid relationship).</p>
 		<p>If you have any questions, or concerns! Let me know on <%= link_to "Twitter", "https://twitter.com/anujanpan" %>!</p></div>
 	<% else %>
@@ -32,5 +32,5 @@
 		</table>
 	<% end %>
 <% else %>
-
+Not logged in ##TODO
 <% end %>

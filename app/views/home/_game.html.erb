@@ -1,0 +1,9 @@
+<tr>
+	<td><%= $redis.get(game.champion_id) %></td>
+	<td><%= game.level %></td>
+	<td><%= game.estimated_time_string %></td>
+	<td><%= game.champions_killed %> / <%= game.num_deaths %> / <%= game.assists %></td>
+	<td><%= game.item_string %></td>
+	<td><%= game.gold_earned %></td>
+	<td><%= game.date %></td>
+</tr>

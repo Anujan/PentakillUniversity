@@ -6,7 +6,7 @@ class PaymentNotificationsController < ApplicationController
     render :nothing => true
   end
   def request_valid?
-    uri = URI.parse('https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_notify-validate')
+    uri = URI.parse('https://www.paypal.com/cgi-bin/webscr?cmd=_notify-validate')
 
     http = Net::HTTP.new(uri.host, uri.port)
     http.open_timeout = 60

@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pentakill University - <%= content_for?(:title) ? yield(:title) : "League of Legends Mentorship Hub" %></title>
+  <title>The Proving Grounds - <%= content_for?(:title) ? yield(:title) : "League of Legends Mentorship Hub" %></title>
   <%= csrf_meta_tags %>
     <!--[if lt IE 9]>
       <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.6.1/html5shiv.js" type="text/javascript"></script>
@@ -15,7 +15,7 @@
       <%= javascript_include_tag "application" %>
     </head>
     <body>
-      <%= nav_bar :fixed => :top, :inverse => true, :brand => "Pentakill University", :responsive => true do %>
+      <%= nav_bar :fixed => :top, :inverse => true, :brand => "Proving Grounds", :responsive => true do %>
       <%= menu_group do %>
       <%= menu_item "Home", root_path %>
       <%= menu_item "Find Students", students_path %>
@@ -52,7 +52,7 @@
         <footer>
           <div id="footer-wrapper">
            <ul id="footer-container-right">
-            <li class="copyright">Copyright © 2013 <%= link_to "Pentakill University", root_path %>. All Rights Reserved.</li>
+            <li class="copyright">Copyright © 2013 <%= link_to "Proving Grounds", root_path %>. All Rights Reserved.</li>
             <li class="copyright">Powered by <a href="http://shurima.net">Shurima.NET</a>
             </ul>
           </div>
