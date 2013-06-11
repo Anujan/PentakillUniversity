@@ -70,7 +70,7 @@ class User < ActiveRecord::Base
 		end
 		eligible_tiers = ['PLATINUM', 'DIAMOND', 'CHALLENGER']
 		if (type == 'Mentor' && !eligible_tiers.include?(tier))
-			errors.add(:type, "Mentors must be at least PLATINUM.")
+			errors.add(:mentor, "Mentors must be at least PLATINUM.")
 		end
 	end
 	
