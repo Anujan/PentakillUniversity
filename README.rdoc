@@ -1,4 +1,4 @@
-== Pentakill University is the application that is run on [TheProvingGrounds.net](http://theprovinggrounds.net).
+== Pentakill University is the application that is run on http://theprovinggrounds.net .
 
 You guys are free to do whatever with the code, even rehosting it if you'd like. 
 
