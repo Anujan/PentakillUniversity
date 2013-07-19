@@ -8,9 +8,8 @@ load "config/recipes/nodejs"
 load "config/recipes/rbenv"
 load "config/recipes/check"
 
-server "198.46.140.247", :web, :app, :db, primary: true
+server "0.0.0.0", :web, :app, :db, primary: true
 
-set :user, "anujan"
 set :application, "pentakilluniversity"
 set :deploy_to, "/home/#{user}/apps/#{application}"
 set :deploy_via, :remote_cache
